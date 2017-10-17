@@ -1,0 +1,43 @@
+@import '../../scss/variables.scss';
+
+.header {
+  background: $dark-blue--1;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+}
+
+.header__draggable-region {
+  -webkit-app-region: drag;
+  flex: 1;
+  height: 100%;
+}
+
+.header-icon {
+  & + & {
+    margin-left: 10px;
+  }
+
+  cursor: pointer;
+
+  border-color: $blue;
+  color: $blue;
+
+  &:hover {
+    border-color: $blue--lighter;
+    color: $blue--lighter;
+  }
+}
+
+.header-icon--minimize {
+  height: 12px;
+  width: 12px;
+  border-bottom: 2px solid;
+}
+
+.header-icon--maximize {
+  height: 10px;
+  width: 10px;
+  border: 2px solid;
+}

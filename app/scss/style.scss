@@ -1,0 +1,24 @@
+html {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+body {
+  color: $light-blue;
+  background-color: $dark-blue;
+}
+
+.fa {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: $blue;
+  transition: all 0.1s linear;
+  cursor: pointer;
+
+  &:hover {
+    color: $blue--lighter;
+  }
+}

@@ -1,0 +1,10 @@
+// colors
+$dark-blue: #1d2938;
+$dark-blue--1: lighten(#1d2938, 5%);
+$dark-blue--2: lighten(#1d2938, 10%);
+$blue: #258de5;
+$blue--lighter: saturate(lighten($blue, 10%), 100%);
+$green: #39ce83;
+$light-blue: #e9eef2;
+$red: #e95779;
+$white: #fff;
