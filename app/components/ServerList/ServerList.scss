@@ -1,0 +1,7 @@
+@import '../../scss/variables.scss';
+
+.server-list {
+  background: darken($dark-blue, 1%);
+  width: 200px;
+  border-right: 1px solid $dark-blue--3;
+}

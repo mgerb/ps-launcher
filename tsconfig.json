@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "experimentalDecorators": true,
     "target": "es6",
     "module": "es6",
     "moduleResolution": "node",
@@ -7,7 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "preserveConstEnums": true,
     "allowJs": false,
     "sourceMap": true,

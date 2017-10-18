@@ -2,9 +2,9 @@
 $dark-blue: #1d2938;
 $dark-blue--1: lighten(#1d2938, 5%);
 $dark-blue--2: lighten(#1d2938, 10%);
+$dark-blue--3: lighten(#1d2938, 15%);
 $blue: #258de5;
 $blue--lighter: saturate(lighten($blue, 10%), 100%);
 $green: #39ce83;
-$light-blue: #e9eef2;
 $red: #e95779;
-$white: #fff;
+$white: darken(#e9eef2, 10%);

@@ -1,0 +1,36 @@
+@import '../../scss/variables';
+
+.content {
+  flex: 1;
+
+  .path-container {
+    display: flex;
+  }
+
+  .content-button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $blue;
+    transition: background 0.2s;
+    outline: none;
+    padding: 0 15px;
+
+    &:hover {
+      background: darken($blue, 5%);
+    }
+  }
+
+  .content-input {
+    flex: 1;
+    background: darken($dark-blue, 3%);
+    border: none;
+    color: $blue--lighter;
+    padding: 5px;
+
+    &::-webkit-input-placeholder {
+      color: $dark-blue--2;
+    }
+  }
+}

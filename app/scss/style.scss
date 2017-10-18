@@ -1,9 +1,15 @@
+* {
+  &:focus {
+    outline: 0;
+  }
+}
+
 html {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
 body {
-  color: $light-blue;
+  color: $white;
   background-color: $dark-blue;
 }
 

@@ -1,11 +1,12 @@
 @import '../../scss/variables.scss';
 
 .header {
-  background: $dark-blue--1;
+  background: $dark-blue--2;
   display: flex;
   align-items: center;
-  height: 40px;
+  height: 30px;
   padding: 0 10px;
+  border-bottom: 1px solid $dark-blue--3;
 }
 
 .header__draggable-region {

@@ -1,6 +1,9 @@
 {
   "extends": "tslint-config-airbnb",
   "rules": {
+    "member-access": true,
+    "typedef": [true, "call-signature", "member-variable-declaration"],
+    "quotemark": [true, "single", "jsx-double"],
     "align": false,
     "ter-arrow-parens": false,
     "import-name": false,
