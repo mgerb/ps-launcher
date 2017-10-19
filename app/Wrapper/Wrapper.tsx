@@ -1,26 +1,33 @@
 import React from 'react';
-import { Provider } from 'mobx-react';
-import AppState from '../state/AppState';
+import { inject, observer } from 'mobx-react';
+import { AppState } from '../state/AppState';
 import { Content, Header, ServerList, SubHeader } from '../components';
 
 import './Wrapper.scss';
 
-const stores = { AppState };
+interface Props {
+  AppState?: AppState;
+}
 
-export class Wrapper extends React.Component<any, any> {
+@inject('AppState')
+@observer
+export class Wrapper extends React.Component<Props, any> {
+
+  private renderMain(): any {
+    return (
+      <div className="wrapper">
+        <Header />
+        <SubHeader />
+        <div style={{ display: 'flex', flex: 1 }}>
+          <ServerList />
+          <Content />
+        </div>
+      </div>
+    );
+  }
 
   public render(): any {
-    return (
-      <Provider {...stores}>
-        <div className="wrapper">
-          <Header />
-          <SubHeader />
-          <div style={{ display: 'flex', flex: 1 }}>
-            <ServerList />
-            <Content />
-          </div>
-        </div>
-      </Provider>
-    );
+    // make sure app is bootstrapped before rendering
+    return this.props.AppState.isBootstrapped ? this.renderMain() : <div />;
   }
 }

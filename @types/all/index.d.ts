@@ -1,1 +1,1 @@
-declare module 'this-is-a-test-module';
+declare module '*.png';

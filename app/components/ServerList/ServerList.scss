@@ -1,7 +1,73 @@
 @import '../../scss/variables.scss';
 
 .server-list {
+  display: flex;
+  flex-direction: column;
   background: darken($dark-blue, 1%);
-  width: 200px;
+  min-width: 200px;
   border-right: 1px solid $dark-blue--3;
+
+  .server-list-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+    .fa {
+      cursor: pointer;
+      color: $blue;
+
+      &:hover {
+        color: $blue--lighter;
+      }
+    }
+  }
+
+  .item-container {
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .list-item {
+    cursor: pointer;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: darken($dark-blue, 1%);
+    transition: all 0.2s linear;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+
+    &:hover, &.selected {
+      background: $dark-blue--1;
+      color: lighten($white, 10%);
+      border-left-color: $blue;
+    }
+  }
+
+  .start-button-container {
+    height: 100px;
+    padding: 10px;
+  }
+
+  .start-button {
+    height: 100%;
+    width: 100%;
+    border: none;
+    background: $blue;
+    border-radius: 4px;
+    cursor: pointer;
+    color: $white;
+    font-size: 30px;
+
+    &:disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    &:hover {
+      background: $blue--lighter;
+    }
+  }
+
 }

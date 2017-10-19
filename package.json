@@ -1,6 +1,6 @@
 {
-  "name": "todoapp",
-  "version": "1.0.0",
+  "name": "ps-launcher",
+  "version": "0.0.1",
   "description": "A seed for a simple react application with typescript.",
   "main": "main.js",
   "scripts": {
@@ -8,8 +8,25 @@
     "c9": "webpack-dev-server --host 0.0.0.0 --port 8080 --inline --history-api-fallback",
     "dev": "webpack --watch --colors",
     "dev:server": "webpack-dev-server --inline --history-api-fallback",
-    "start": "electron ./main.js",
-    "watch": "webpack --watch"
+    "start": "electron .",
+    "watch": "webpack --watch",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "ps-launcher",
+    "directories": {
+      "output": "build"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "runAfterFinish": true,
+      "deleteAppDataOnUninstall": true
+    }
   },
   "author": "Mitchell Gerber",
   "license": "MIT",
@@ -29,7 +46,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "clean-webpack-plugin": "^0.1.14",
     "css-loader": "^0.28.7",
-    "electron": "^1.7.9",
+    "electron-builder-squirrel-windows": "^19.39.0",
     "extract-text-webpack-plugin": "3.0.1",
     "file-loader": "^1.1.5",
     "font-awesome": "^4.7.0",
@@ -51,5 +68,9 @@
     "url-loader": "^0.6.2",
     "webpack": "3.7.1",
     "webpack-dev-server": "2.9.2"
+  },
+  "devDependencies": {
+    "electron": "^1.7.9",
+    "electron-builder": "^19.37.2"
   }
 }

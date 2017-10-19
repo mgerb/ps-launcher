@@ -21,10 +21,30 @@ body {
 a {
   text-decoration: none;
   color: $blue;
-  transition: all 0.1s linear;
+  transition: all 0.2s linear;
   cursor: pointer;
 
   &:hover {
     color: $blue--lighter;
   }
+}
+
+::-webkit-scrollbar-track
+{
+	border-radius: 10px;
+  background-color: none;
+}
+
+::-webkit-scrollbar
+{
+	width: 5px;
+	height: 5px;
+	background-color: none;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-color: darken($dark-blue, 5%);
 }

@@ -43,28 +43,31 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use:
-          'url-loader?limit=65000&mimetype=image/svg+xml&name=static/[name].[hash].[ext]',
+        use: 'url-loader?limit=65000&mimetype=image/svg+xml&name=static/[name].[hash].[ext]',
       },
       {
         test: /\.woff$/,
-        use:
-          'url-loader?limit=65000&mimetype=application/font-woff&name=static/[name].[hash].[ext]',
+        use: 'url-loader?limit=65000&mimetype=application/font-woff&name=static/[name].[hash].[ext]',
       },
       {
         test: /\.woff2$/,
-        use:
-          'url-loader?limit=65000&mimetype=application/font-woff2&name=static/[name].[hash].[ext]',
+        use: 'url-loader?limit=65000&mimetype=application/font-woff2&name=static/[name].[hash].[ext]',
       },
       {
         test: /\.[ot]tf$/,
-        use:
-          'url-loader?limit=65000&mimetype=application/octet-stream&name=static/[name].[hash].[ext]',
+        use: 'url-loader?limit=65000&mimetype=application/octet-stream&name=static/[name].[hash].[ext]',
       },
       {
         test: /\.eot$/,
-        use:
-          'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=static/[name].[hash].[ext]',
+        use: 'url-loader?limit=65000&mimetype=application/vnd.ms-fontobject&name=static/[name].[hash].[ext]',
+      },
+      {
+        test: /\.(?:png|jpg|svg)$/,
+        loader: 'file-loader',
+        query: {
+          // Inline images smaller than 10kb as data URIs
+          limit: 10000,
+        },
       },
     ],
   },
@@ -86,5 +89,8 @@ module.exports = {
       minChunks: 'Infinity',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      VERSION: JSON.stringify(require("./package.json").version)
+    })
   ],
 };

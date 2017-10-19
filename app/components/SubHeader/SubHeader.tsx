@@ -3,6 +3,16 @@ import { inject, observer } from 'mobx-react';
 import * as _ from 'lodash';
 import { AppState } from '../../state/AppState';
 
+import vanilla from '../../assets/vanilla.png';
+import bc from '../../assets/bc.png';
+import wotlk from '../../assets/wotlk.png';
+
+const images: any = {
+  vanilla,
+  bc,
+  wotlk,
+};
+
 import './SubHeader.scss';
 
 interface Props {
@@ -26,10 +36,10 @@ export class SubHeader extends React.Component<Props, any> {
 
   private renderItems(): any {
     const { selectedExpKey } = this.props.AppState;
-    return _.map(this.props.AppState.expansions, (exp, key) => {
+    return _.map(this.props.AppState.expansions, (_, key) => {
       return (
         <div key={key} className={'sub-header__item ' + (key === selectedExpKey && 'selected')} onClick={() => this.selectExpansion(key)}>
-          <div style={{ textAlign: 'center' }}>{exp.name}</div>
+          <img src={images[key]} className="exp-image"/>
         </div>
       );
     });

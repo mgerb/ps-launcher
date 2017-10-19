@@ -8,6 +8,8 @@ interface Props {
   AppState?: AppState;
 }
 
+declare const VERSION: any;
+
 @inject('AppState')
 @observer
 export class Header extends React.Component<Props, any> {
@@ -35,6 +37,7 @@ export class Header extends React.Component<Props, any> {
   public render(): any {
     return (
       <div className="header">
+        <div className="header__version">PS Launcher <span style={{ fontSize: '10px' }}>v{VERSION}</span></div>
         <div className="header__draggable-region"></div>
         <div className="header-icon header-icon--minimize" onClick={this.minimize.bind(this)}/>
         <div className="header-icon header-icon--maximize" onClick={this.maximize.bind(this)}/>
