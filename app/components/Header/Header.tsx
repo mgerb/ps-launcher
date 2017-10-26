@@ -37,11 +37,11 @@ export class Header extends React.Component<Props, any> {
   public render(): any {
     return (
       <div className="header">
-        <div className="header__version">PS Launcher <span style={{ fontSize: '10px' }}>v{VERSION}</span></div>
+        <div className="header__version"><span style={{ fontSize: '10px' }}>v{VERSION}</span></div>
         <div className="header__draggable-region"></div>
         <div className="header-icon header-icon--minimize" onClick={this.minimize.bind(this)}/>
         <div className="header-icon header-icon--maximize" onClick={this.maximize.bind(this)}/>
-        <div className="fa fa-times fa-lg header-icon" onClick={() => this.exit()}/>
+        <div className="header-icon header-icon--close" onClick={() => this.exit()}>×</div>
       </div>
     );
   }

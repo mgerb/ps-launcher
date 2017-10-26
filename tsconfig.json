@@ -4,7 +4,7 @@
     "target": "es6",
     "module": "es6",
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsx": "preserve",
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
     "noImplicitThis": true,

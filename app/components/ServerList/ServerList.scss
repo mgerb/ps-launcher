@@ -3,7 +3,7 @@
 .server-list {
   display: flex;
   flex-direction: column;
-  background: darken($dark-blue, 1%);
+  background: $dark-blue;
   min-width: 200px;
   border-right: 1px solid $dark-blue--3;
 
@@ -15,10 +15,10 @@
 
     .fa {
       cursor: pointer;
-      color: $blue;
+      color: $gray;
 
       &:hover {
-        color: $blue--lighter;
+        color: $gray--1;
       }
     }
   }
@@ -33,7 +33,7 @@
     height: 50px;
     line-height: 50px;
     text-align: center;
-    background: darken($dark-blue, 1%);
+    background: $dark-blue;
     transition: all 0.2s linear;
     border-right: 4px solid transparent;
     border-left: 4px solid transparent;

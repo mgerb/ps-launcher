@@ -8,3 +8,5 @@ $blue--lighter: saturate(lighten($blue, 10%), 100%);
 $green: #39ce83;
 $red: #e95779;
 $white: darken(#e9eef2, 10%);
+$gray: lighten($dark-blue, 40%);
+$gray--1: lighten($dark-blue, 50%);

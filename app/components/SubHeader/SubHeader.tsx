@@ -6,11 +6,15 @@ import { AppState } from '../../state/AppState';
 import vanilla from '../../assets/vanilla.png';
 import bc from '../../assets/bc.png';
 import wotlk from '../../assets/wotlk.png';
+import cata from '../../assets/cata.png';
+import mop from '../../assets/mop.png';
 
 const images: any = {
   vanilla,
   bc,
   wotlk,
+  cata,
+  mop,
 };
 
 import './SubHeader.scss';

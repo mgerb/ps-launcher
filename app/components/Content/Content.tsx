@@ -12,11 +12,20 @@ interface Props {
 @inject('AppState')
 @observer
 export class Content extends React.Component<Props, any> {
+
+  private webviewRef: any;
+
   constructor() {
     super();
     this.state = {
       path: '',
     };
+  }
+
+  public componentDidMount(): void {
+    this.webviewRef.addEventListener('dom-ready', () => {
+      this.webviewRef.insertCSS(injectedCSS);
+    });
   }
 
   private onFolderSelect(e: React.ChangeEvent<HTMLInputElement>): void {
@@ -32,20 +41,15 @@ export class Content extends React.Component<Props, any> {
   }
 
   public render(): any {
-    const { selectedExpansion } = this.props.AppState;
+    const { selectedExpansion, selectedServer } = this.props.AppState;
+    const website = _.get(selectedServer, 'website');
 
     return (
       <div className="content">
         <div className="path-container">
-          <input
-            type="text"
-            className="content-input"
-            placeholder="Your wow directory"
-            value={selectedExpansion.directory}
-            onChange={this.onInputChange.bind(this)}
-          />
           <label htmlFor="folder-browser" className="content-button">
-            Browse
+            {/* <span>Browse</span> */}
+            <i className="fa fa-folder-open"/>
           </label>
           <input
             id="folder-browser"
@@ -54,8 +58,49 @@ export class Content extends React.Component<Props, any> {
             onChange={this.onFolderSelect.bind(this)}
             style={{ display: 'none' }}
           />
+          <input
+            type="text"
+            className="content-input"
+            placeholder="Your WoW directory"
+            value={selectedExpansion.directory}
+            onChange={this.onInputChange.bind(this)}
+          />
         </div>
+        <webview
+          id="foo"
+          className="webview"
+          src={website}
+          ref={(r: any) => this.webviewRef = r}
+          style={{ display: website ? null : 'none' }}
+        />
+        {!website && <div className="noSite"><h2>No Website Available</h2></div>}
       </div>
     );
   }
 }
+
+const injectedCSS: string = `
+  ::-webkit-scrollbar-track
+  {
+    border-radius: 10px;
+    background-color: none;
+  }
+
+  ::-webkit-scrollbar
+  {
+    width: 10px;
+    height: 10px;
+    background-color: none;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    background-color: #141d27;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
+`;
