@@ -5,3 +5,5 @@ declare module JSX {
     'webview': any;
   }
 }
+
+declare const VERSION: any;

@@ -1,4 +1,12 @@
-# Work in progress
+# PS Launcher
+### Work in progress
+
+## Development Environment
+- Clone project
+- [Install yarn](https://yarnpkg.com/en/)
+- `yarn install`
+- `yarn run dev` - compile javascript
+- `yarn start` - start electron app
 
 ## TODO
 - Add modals for server editing

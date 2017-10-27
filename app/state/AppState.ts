@@ -18,18 +18,19 @@ export interface ServerType {
 }
 
 export class AppState {
-  private appPath: string;
-  private persistentFilePath: string;
 
-  constructor() {
-    this.appPath = remote.app.getPath('appData') + '/' + remote.app.getName();
-    this.persistentFilePath = this.appPath + '/state.json';
-    this.bootstrap();
-  }
+  // read only app data
+  private readonly appPath: string = remote.app.getPath('appData') + '/' + remote.app.getName();
+  private readonly persistentFilePath: string = this.appPath + '/app-state.json';
+  private readonly appVersion: string = VERSION;
 
   @observable public expansions: { [key: string]: ExpansionType };
   @observable public isBootstrapped: boolean = false;
   @observable public selectedExpKey: string = 'vanilla';
+
+  constructor() {
+    this.bootstrap();
+  }
 
   @computed
   public get selectedExpansion(): ExpansionType {
@@ -50,53 +51,65 @@ export class AppState {
   @action
   public setSelectedServerIndex(index: number): void {
     this.selectedExpansion.selectedServerIndex = index;
-    this.updateFile(this.expansions);
+    this.persistState();
   }
 
   @action
   public setSelectedExpansion(exp: string): void {
     this.selectedExpKey = exp;
+    this.persistState();
   }
 
   @action
   public setDirectory(dir: string): void {
     this.selectedExpansion.directory = dir;
-    this.updateFile(this.expansions);
+    this.persistState();
   }
 
-
   // bootstrap application
-  // creates directory and state.json in appData
+  // creates directory and persistent store in appData
   @action
   private bootstrap(): void {
     if (!fs.statSync(this.appPath).isDirectory()) {
       fs.mkdirSync(this.appPath);
     }
 
-    fs.stat(this.persistentFilePath, err => {
-      // create file if not exists
-      if (err) {
-        runInAction(() => {
+    fs.readFile(this.persistentFilePath, (err, data) => {
+
+      runInAction(() => {
+        // create file if not exists
+        if (err) {
           this.expansions = persistentStateSeed();
           this.isBootstrapped = true;
-        });
-        this.updateFile(this.expansions);
-      } else {
-        fs.readFile(this.persistentFilePath, (err, data) => {
-          if (!err) {
-            runInAction(() => {
-              this.expansions = JSON.parse(data.toString()) as any;
-              this.isBootstrapped = true;
-            });
-          }
-        });
-      }
+          this.persistState();
+        } else {
+          // TODO: future note - grab app version here and update
+          // any persisted state accordingly after app has been updated
+          const storedData = JSON.parse(data.toString()) as any;
+          this.expansions = storedData.expansions;
+          this.selectedExpKey = storedData.selectedExpKey;
+          this.isBootstrapped = true;
+        }
+      });
     });
   }
 
-  private updateFile(exp: any): Promise<void> {
+  // save state of app to file in app data
+  private persistState(): Promise<void> {
+
+    // select what we want to persist
+    const { appVersion, expansions, selectedExpKey } = this;
+
+    // create new object of what we want to persist
+    const persistedState = {
+      appVersion,
+      expansions,
+      selectedExpKey,
+    };
+
+    // write our new object to a file
     return new Promise((resolve, reject) => {
-      fs.writeFile(this.persistentFilePath, JSON.stringify(exp, null, 2), {}, err => {
+      fs.writeFile(this.persistentFilePath, JSON.stringify(persistedState, null, 2), {}, err => {
         err ? reject(err) : resolve();
       });
     });

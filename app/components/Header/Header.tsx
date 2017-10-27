@@ -8,8 +8,6 @@ interface Props {
   AppState?: AppState;
 }
 
-declare const VERSION: any;
-
 @inject('AppState')
 @observer
 export class Header extends React.Component<Props, any> {
