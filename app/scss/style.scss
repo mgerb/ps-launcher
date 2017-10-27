@@ -31,22 +31,72 @@ a {
   }
 }
 
-::-webkit-scrollbar-track
-{
-	border-radius: 10px;
+.input {
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  background: $dark-blue;
+  width: 100%;
+  color: $white;
+  border: 1px solid darken($dark-blue, 5%);
+
+  &::-webkit-input-placeholder {
+    color: $dark-blue--3;
+  }
+}
+
+.form-group {
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+.form-group__label {
+  font-size: 12px;
+  line-height: 20px;
+  color: $gray;
+  padding-left: 5px;
+}
+
+.button {
+  border: 0;
+  padding: 10px;
+  border-radius: 4px;
+  background: darken($gray, 5%);
+  transition: all 0.2s linear;
+  color: $white;
+  cursor: pointer;
+
+  &:hover {
+    background: $gray;
+  }
+
+  & + & {
+    margin-left: 5px;
+  }
+}
+
+.button--success {
+  background: $blue;
+
+  &:hover {
+    background: $blue--lighter;
+  }
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
   background-color: none;
 }
 
-::-webkit-scrollbar
-{
-	width: 5px;
-	height: 5px;
-	background-color: none;
-	border-radius: 10px;
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: none;
+  border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	background-color: darken($dark-blue, 5%);
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: darken($dark-blue, 5%);
 }

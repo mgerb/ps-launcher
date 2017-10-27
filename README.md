@@ -11,7 +11,9 @@
 ## TODO
 - Add modals for server editing
 - Remove/edit servers in the list
-- App icon
+
+## Prototype 4 10/26/2017 - Server Edit Modal
+![alt text](https://github.com/mgerb/ps-launcher/blob/master/docs/images/prototype4.png?raw=true "Prototype 4")
 
 ## Prototype 3 10/25/2017
 ![alt text](https://github.com/mgerb/ps-launcher/blob/master/docs/images/prototype3.png?raw=true "Prototype 3")

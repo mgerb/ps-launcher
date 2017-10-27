@@ -4,6 +4,7 @@ import { exec } from 'child_process';
 import { inject, observer } from 'mobx-react';
 import { AppState } from '../../state/AppState';
 import { toast } from '../../util';
+import { Modal } from '../Modal/Modal';
 
 import './ServerList.scss';
 
@@ -11,23 +12,19 @@ interface Props {
   AppState?: AppState;
 }
 
+interface State {
+  showModal: boolean;
+}
+
 @inject('AppState')
 @observer
-export class ServerList extends React.Component<Props, any> {
+export class ServerList extends React.Component<Props, State> {
+
   constructor(props: Props) {
     super(props);
-  }
-
-  private renderItems(): any {
-    const { AppState } = this.props;
-    return this.props.AppState.selectedExpansion.servers.map((server, index) => {
-      const selected = AppState.selectedExpansion.selectedServerIndex === index ? ' selected' : '';
-      return (
-        <div key={index} className={'list-item' + selected} onClick={() => AppState.setSelectedServerIndex(index)}>
-          {server.name}
-        </div>
-      );
-    });
+    this.state = {
+      showModal: false,
+    };
   }
 
   private async play(): Promise<void> {
@@ -72,14 +69,60 @@ export class ServerList extends React.Component<Props, any> {
     });
   }
 
+  private renderItems(): any {
+    const { AppState } = this.props;
+    return this.props.AppState.selectedExpansion.servers.map((server, index) => {
+      const selected = AppState.selectedExpansion.selectedServerIndex === index ? ' selected' : '';
+      return (
+        <div key={index} className={'list-item' + selected} onClick={() => AppState.setSelectedServerIndex(index)}>
+          {server.name}
+        </div>
+      );
+    });
+  }
+
+  private renderModal(): any {
+    return (
+      <Modal
+        isOpen={this.state.showModal}
+        onClose={() => this.setState({ showModal: false })}
+        title="Add a server"
+      >
+        <div className="modal-content">
+          <div style={{ flex: 1 }}>
+            <div className="form-group">
+              <label className="form-group__label">Server Name</label>
+              <input className="input" placeholder="Awesome Server Name"/>
+            </div>
+            <div className="form-group">
+              <label className="form-group__label">Realm List</label>
+              <input className="input" placeholder="logon.server.com"/>
+            </div>
+            <div className="form-group">
+              <label className="form-group__label">Website URL</label>
+              <input className="input" placeholder="https://www.awesomeserver.com"/>
+            </div>
+          </div>
+
+          <div className="button-group">
+            <button className="button" onClick={() => this.setState({ showModal: false })}>Cancel</button>
+            <button className="button button--success">Save</button>
+          </div>
+
+        </div>
+      </Modal>
+    );
+  }
+
   public render(): any {
     const { selectedServer } = this.props.AppState;
 
     return (
       <div className="server-list">
+        {this.renderModal()}
         <div className="server-list-heading">
           <div>Servers</div>
-          <i className="fa fa-plus" />
+          <i className="fa fa-plus" onClick={() => this.setState({ showModal: true })}/>
         </div>
         <div className="item-container">{this.renderItems()}</div>
         <div className="start-button-container">

@@ -1,0 +1,50 @@
+@import '../../scss/variables';
+
+.CustomModal--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.CustomModal__base {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.CustomModal__content {
+  height: 400px;
+  width: 400px;
+  background: $dark-blue--1;
+  border-radius: 4px;
+  z-index: 200;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.CustomModal__overlay {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  background: $dark-blue;
+  opacity: 0.8;
+}
+
+.CustomModal__header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  background: $dark-blue--2;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}

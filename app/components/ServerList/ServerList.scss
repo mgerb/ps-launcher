@@ -71,4 +71,16 @@
     }
   }
 
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex: 1;
+  }
+
+  .button-group {
+    align-self: flex-end;
+    justify-content: flex-end;
+  }
+
 }

@@ -41,7 +41,6 @@ export class Header extends React.Component<Props, any> {
     return (
       <div className="header">
         <div className="header__version">
-          {/* <i className="fa fa-2x fa-github"/> */}
           <img src={headerIcon}/>
           <span style={{ fontSize: '10px' }}>v{VERSION}</span>
         </div>
