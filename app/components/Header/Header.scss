@@ -48,6 +48,16 @@
 }
 
 .header__version {
-  color: $blue--lighter;
-  font-size: 12px;
+  span {
+    font-size: 12px;
+    position: relative;
+    bottom: 3px;
+    color: $blue--lighter;
+  }
+
+  img {
+    position: relative;
+    top: 3px;
+    margin-right: 3px;
+  }
 }

@@ -5,21 +5,25 @@
   "main": "main.js",
   "scripts": {
     "build": "webpack -p --progress --colors",
-    "c9": "webpack-dev-server --host 0.0.0.0 --port 8080 --inline --history-api-fallback",
     "dev": "webpack --watch --colors",
     "dev:server": "webpack-dev-server --inline --history-api-fallback",
     "start": "electron .",
     "watch": "webpack --watch",
+    "generate-icons": "electron-icon-maker -i ./app/assets/app-icon.png -o ./app/assets",
     "pack": "electron-builder --dir",
     "dist": "electron-builder"
   },
   "build": {
-    "appId": "ps-launcher",
+    "appId": "PS Launcher",
+    "productName": "PS Launcher",
+    "copyright": "Copyright © 2017 Mitchell Gerber",
     "directories": {
+      "buildResources": "./app/assets/icons",
       "output": "build"
     },
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "./app/assets/icons/win/icon.ico"
     },
     "nsis": {
       "oneClick": false,
@@ -31,7 +35,6 @@
   "author": "Mitchell Gerber",
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "^7.1.5",
     "babel-core": "^6.21.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -39,41 +42,43 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
-    "clean-webpack-plugin": "^0.1.14",
-    "css-loader": "^0.28.7",
-    "electron-builder-squirrel-windows": "^19.39.0",
-    "extract-text-webpack-plugin": "3.0.1",
-    "file-loader": "^1.1.5",
     "font-awesome": "^4.7.0",
-    "html-webpack-plugin": "^2.24.1",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "mobx": "^3.3.1",
     "mobx-react": "^4.3.3",
-    "node-sass": "^4.5.3",
-    "normalize.css": "^7.0.0",
-    "prettier": "^1.7.4",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "sass-loader": "^6.0.6",
-    "style-loader": "^0.19.0",
-    "toastr": "^2.1.2",
-    "ts-loader": "^2.0.3",
-    "tslint": "^5.7.0",
-    "tslint-config-airbnb": "^5.3.0",
-    "typescript": "^2.2.2",
-    "url-loader": "^0.6.2",
-    "webpack": "3.7.1"
+    "toastr": "^2.1.2"
   },
   "devDependencies": {
-    "webpack-dev-server": "2.9.2",
     "@types/electron": "^1.6.10",
     "@types/lodash": "^4.14.77",
     "@types/react": "^16.0.10",
     "@types/react-dom": "^16.0.1",
     "@types/react-router-dom": "^4.0.2",
     "@types/toastr": "^2.1.35",
+    "autoprefixer": "^7.1.5",
+    "clean-webpack-plugin": "^0.1.14",
+    "css-loader": "^0.28.7",
     "electron": "^1.7.9",
-    "electron-builder": "^19.37.2"
+    "electron-builder": "^19.37.2",
+    "electron-builder-squirrel-windows": "^19.39.0",
+    "electron-icon-maker": "^0.0.4",
+    "extract-text-webpack-plugin": "3.0.1",
+    "file-loader": "^1.1.5",
+    "html-webpack-plugin": "^2.24.1",
+    "node-sass": "^4.5.3",
+    "normalize.css": "^7.0.0",
+    "prettier": "^1.7.4",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "ts-loader": "^2.0.3",
+    "tslint": "^5.7.0",
+    "tslint-config-airbnb": "^5.3.0",
+    "typescript": "^2.2.2",
+    "url-loader": "^0.6.2",
+    "webpack": "3.7.1",
+    "webpack-dev-server": "2.9.2"
   }
 }

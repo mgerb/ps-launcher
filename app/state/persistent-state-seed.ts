@@ -17,7 +17,7 @@ export const persistentStateSeed = (): any => {
         {
           name: 'Kronos',
           realmlist: 'login.kronos-wow.com',
-          website: 'https://www.kronos-wow.com?lang=en',
+          website: 'http://www.kronos-wow.com',
         },
         {
           name: `Light's Hope`,
