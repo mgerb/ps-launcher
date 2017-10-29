@@ -33,19 +33,30 @@ export class Header extends React.Component<Props, any> {
     remote.getCurrentWindow().minimize();
   }
 
-  private openGithub(): void {
+  private openReleases(): void {
     shell.openExternal('https://github.com/mgerb/ps-launcher/releases');
   }
 
+  private openBugReport(): void {
+    shell.openExternal('https://github.com/mgerb/ps-launcher/issues');
+  }
+
   public render(): any {
+    const { updateAvailable } = this.props.AppState;
+    const updateClass = updateAvailable ? 'header__update' : '';
+
     return (
       <div className="header">
         <div className="header__version">
           <img src={headerIcon}/>
-          <span style={{ fontSize: '10px' }}>v{VERSION}</span>
+          <span style={{ fontSize: '10px' }}>{VERSION}</span>
         </div>
         <div className="header__draggable-region"></div>
-        <i className="fa fa-lg fa-github header-icon"  onClick={this.openGithub.bind(this)}/>
+        <div className={'header-icon ' + updateClass} onClick={this.openReleases.bind(this)} title="Releases">
+          {updateAvailable && <span style={{ fontSize: '12px' }}>Update Available!</span>}
+          <i className="fa fa-lg fa-github"/>
+        </div>
+        <i className="fa fa-exclamation-triangle header-icon" onClick={this.openBugReport.bind(this)} title="Report a bug"/>
         <div className="header-icon header-icon--minimize" onClick={this.minimize.bind(this)}/>
         <div className="header-icon header-icon--maximize" onClick={this.maximize.bind(this)}/>
         <div className="header-icon header-icon--close" onClick={() => this.exit()}>×</div>

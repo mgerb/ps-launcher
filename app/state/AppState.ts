@@ -3,6 +3,8 @@ import * as _ from 'lodash';
 import { action, computed, observable, runInAction } from 'mobx';
 import fs from 'fs';
 import { persistentStateSeed } from './persistent-state-seed';
+import { versioning } from '../util';
+import 'babel-polyfill';
 
 export interface ExpansionType {
   name: string;
@@ -27,6 +29,7 @@ export class AppState {
   @observable public expansions: { [key: string]: ExpansionType };
   @observable public isBootstrapped: boolean = false;
   @observable public selectedExpKey: string = 'vanilla';
+  @observable public updateAvailable: boolean = false;
 
   constructor() {
     this.bootstrap();
@@ -118,10 +121,17 @@ export class AppState {
     this.persistState();
   }
 
-  // bootstrap application
-  // creates directory and persistent store in appData
+  // bootstrap process for application
   @action
   private bootstrap(): void {
+
+    // start interval to check for updates
+    // 5 minutes
+    this.startVersionCheck();
+    setInterval(() => {
+      this.startVersionCheck();
+    }, 5 * 60000);
+
     if (!fs.statSync(this.appPath).isDirectory()) {
       fs.mkdirSync(this.appPath);
     }
@@ -144,6 +154,16 @@ export class AppState {
         }
       });
     });
+  }
+
+  private async startVersionCheck(): Promise<void> {
+    const update = await versioning.checkForUpdates();
+
+    if (update) {
+      runInAction(() => {
+        this.updateAvailable = update;
+      });
+    }
   }
 
   // save state of app to file in app data

@@ -47,6 +47,18 @@
   font-size: 30px;
 }
 
+.header__update {
+  color: darken($green, 5%);
+
+  &:hover {
+    color: $green;
+  }
+
+  .fa {
+    margin-right: 0;
+  }
+}
+
 .header__version {
   span {
     font-size: 12px;
