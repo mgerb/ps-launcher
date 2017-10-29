@@ -1,6 +1,6 @@
 {
   "name": "ps-launcher",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A seed for a simple react application with typescript.",
   "main": "main.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "watch": "webpack --watch",
     "generate-icons": "electron-icon-maker -i ./app/assets/app-icon.png -o ./app/assets",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "npm run build && electron-builder"
   },
   "build": {
     "appId": "PS Launcher",
