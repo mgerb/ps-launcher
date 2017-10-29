@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import AppState from './state/AppState';
-import { Wrapper } from './Wrapper/Wrapper';
+import { Wrapper } from './components';
 import 'babel-polyfill';
 
 // base styling

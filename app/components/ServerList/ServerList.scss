@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: column;
   background: $dark-blue;
-  min-width: 200px;
+  width: 250px;
   border-right: 1px solid $dark-blue--3;
 
   .server-list-heading {
@@ -12,15 +12,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-
-    .fa {
-      cursor: pointer;
-      color: $gray;
-
-      &:hover {
-        color: $gray--1;
-      }
-    }
   }
 
   .item-container {
@@ -31,17 +22,40 @@
   .list-item {
     cursor: pointer;
     height: 50px;
-    line-height: 50px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background: $dark-blue;
     transition: all 0.2s linear;
     border-right: 4px solid transparent;
     border-left: 4px solid transparent;
+    padding: 0 10px;
 
-    &:hover, &.selected {
+    .edit-button {
+      opacity: 0;
+    }
+
+    &:hover {
+      .edit-button {
+        opacity: 1;
+      }
+    }
+
+    &:hover,
+    &.selected {
       background: $dark-blue--1;
       color: lighten($white, 10%);
       border-left-color: $blue;
+    }
+  }
+
+  .edit-button {
+    cursor: pointer;
+    color: $gray;
+
+    &:hover {
+      color: $gray--1;
     }
   }
 
@@ -71,4 +85,25 @@
     }
   }
 
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    flex: 1;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .delete-button {
+    align-self: center;
+    color: $red;
+    cursor: pointer;
+
+    &:hover {
+      color: lighten($red, 5%);
+    }
+  }
 }

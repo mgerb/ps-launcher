@@ -1,7 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import { AppState } from '../state/AppState';
-import { Content, Header, ServerList, SubHeader } from '../components';
+import { AppState } from '../../state/AppState';
+import { Content, Header, ServerList, SubHeader } from '../';
 
 import './Wrapper.scss';
 

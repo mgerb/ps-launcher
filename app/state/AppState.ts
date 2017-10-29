@@ -48,10 +48,18 @@ export class AppState {
     return this.selectedExpansion.servers[index];
   }
 
+
+  /**
+   * @param {number} index 
+   * @param {boolean} [persist=true] flag whether to persist after setting server index
+   * @memberof AppState
+   */
   @action
-  public setSelectedServerIndex(index: number): void {
+  public setSelectedServerIndex(index: number, persist: boolean = false): void {
     this.selectedExpansion.selectedServerIndex = index;
-    this.persistState();
+    if (persist) {
+      this.persistState();
+    }
   }
 
   @action
@@ -63,6 +71,50 @@ export class AppState {
   @action
   public setDirectory(dir: string): void {
     this.selectedExpansion.directory = dir;
+    this.persistState();
+  }
+
+  /**
+   * @param {ServerType} server 
+   * @returns {boolean} returns whether or not the server was added to the list
+   * @memberof AppState
+   */
+  @action
+  public addServer(server: ServerType): boolean {
+
+    // check if server already exists
+    if (_.some(this.selectedExpansion.servers, s => s.name === server.name)) {
+      return false;
+    }
+
+    // push server into list
+    const index = this.selectedExpansion.servers.push(server) - 1;
+
+    // setting selected server index persists state
+    this.setSelectedServerIndex(index);
+    this.persistState();
+    return true;
+  }
+
+  @action
+  public deleteServer(serverIndex: number): void {
+    if (this.selectedExpansion.selectedServerIndex === serverIndex) {
+      this.setSelectedServerIndex(0);
+    }
+
+    // remove server from list
+    this.selectedExpansion.servers.splice(serverIndex, 1);
+    this.persistState();
+  }
+
+  /**
+   * edit server info and persist state
+   * @param {number} serverIndex index of server in array
+   * @memberof AppState
+   */
+  @action
+  public editServer(serverIndex: number, newServer: ServerType): void {
+    this.selectedExpansion.servers[serverIndex] = newServer;
     this.persistState();
   }
 

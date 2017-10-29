@@ -11,7 +11,7 @@ export const persistentStateSeed = (): any => {
         },
         {
           name: 'Elysium',
-          realmlist: '',
+          realmlist: 'logon.elysium-project.org',
           website: 'https://www.elysium-project.org',
         },
         {
