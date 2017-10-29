@@ -234,13 +234,58 @@ export const persistentStateSeed = (): any => {
     },
     cata: {
       name: 'Cataclysm',
-      servers: [] as any,
-      directory: '',
-      selectedServerIndex: 0,
-    },
-    mop: {
-      name: 'Mists of Pandaria',
-      servers: [] as any,
+      servers: [
+        {
+          name: 'Atlantiss',
+          realmlist: 'play.atlantiss.eu',
+          website: 'https://atlantiss.eu/',
+        },
+        {
+          name: 'Eternal-WoW (Apocalypse',
+          realmlist: 'logon.eternal-wow.com',
+          website: 'http://eternal-wow.com/',
+        },
+        {
+          name: 'Firestorm (Deathwing)',
+          realmlist: 'cata.logon.firestorm-servers.com',
+          website: 'https://firestorm-servers.com/us/',
+        },
+        {
+          name: 'GPLP',
+          realmlist: '37.187.171.126',
+          website: 'http://guerrerosporlapaz.com/',
+        },
+        {
+          name: 'Monster WoW',
+          realmlist: 'logon.monster-wow.com',
+          website: 'https://monster-wow.com/',
+        },
+        {
+          name: 'Titans of WoW',
+          realmlist: 'wow.titansofwow.com',
+          website: 'https://www.titansofwow.com/',
+        },
+        {
+          name: 'TwinStar (Artemis)',
+          realmlist: 'wow.twinstar.cz',
+          website: 'http://www.twinstar.cz/?lang=en',
+        },
+        {
+          name: 'Warmane',
+          realmlist: 'logon.warmane.com',
+          website: 'https://www.warmane.com/',
+        },
+        {
+          name: 'WoW Circle',
+          realmlist: 'logon3.wowcircle.com',
+          website: 'http://wowcircle.com/en/',
+        },
+        {
+          name: 'WoWMortal (Destiny)',
+          realmlist: 'logon.wowmortal.com',
+          website: 'https://wowmortal.com/',
+        },
+      ] as any,
       directory: '',
       selectedServerIndex: 0,
     },
